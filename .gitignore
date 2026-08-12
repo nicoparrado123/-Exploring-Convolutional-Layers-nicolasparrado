@@ -1,0 +1,8 @@
+# Model artifacts
+model/
+model.tar.gz
+*.pth
+*.pt
+
+# Dataset cache (downloaded by torchvision)
+FashionMNIST/
