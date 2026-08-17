@@ -27,27 +27,31 @@ to train on a laptop in a few minutes.
 
 ### Baseline: Flatten + Dense
 
+```mermaid
+flowchart LR
+    A["Input\n28x28"] --> B["Flatten\n784"]
+    B --> C["Dense 256\nReLU"]
+    C --> D["Dense 128\nReLU"]
+    D --> E["Dense 10\nSoftmax"]
 ```
-Input 28x28 --> Flatten (784) --> Dense 256 + ReLU --> Dense 128 + ReLU --> Dense 10 --> Softmax
 
 Parameters: around 235K
-```
 
 ### CNN (designed from scratch)
 
+```mermaid
+flowchart LR
+    A["Input\n1x28x28"] --> B["Conv2d 1→16\nkernel=3, pad=1\nReLU\n16x28x28"]
+    B --> C["MaxPool2d 2x2\n16x14x14"]
+    C --> D["Conv2d 16→32\nkernel=3, pad=1\nReLU\n32x14x14"]
+    D --> E["MaxPool2d 2x2\n32x7x7"]
+    E --> F["Flatten\n1568"]
+    F --> G["Dense 128\nReLU"]
+    G --> H["Dropout 0.3"]
+    H --> I["Dense 10\nSoftmax"]
 ```
-Input 1x28x28
-  --> Conv2d 1 to 16 ch, kernel=3, pad=1 + ReLU   (output: 16x28x28)
-  --> MaxPool2d 2x2                                (output: 16x14x14)
-  --> Conv2d 16 to 32 ch, kernel=3, pad=1 + ReLU  (output: 32x14x14)
-  --> MaxPool2d 2x2                                (output: 32x7x7)
-  --> Flatten (32x7x7 = 1568)
-  --> Dense 128 + ReLU
-  --> Dropout 0.3
-  --> Dense 10 --> Softmax
 
 Parameters: around 207K
-```
 
 Design decisions:
 - kernel=3, padding=1: 3x3 is the smallest kernel that captures structure in all directions. Padding keeps the spatial size before pooling so we don't lose info at the edges too early.
