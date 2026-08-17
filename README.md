@@ -28,7 +28,7 @@ to train on a laptop in a few minutes.
 ### Baseline: Flatten + Dense
 
 ```
-Input 28x28 -> Flatten (784) -> Dense 256 + ReLU -> Dense 128 + ReLU -> Dense 10 -> Softmax
+Input 28x28 --> Flatten (784) --> Dense 256 + ReLU --> Dense 128 + ReLU --> Dense 10 --> Softmax
 
 Parameters: around 235K
 ```
@@ -37,14 +37,14 @@ Parameters: around 235K
 
 ```
 Input 1x28x28
--> Conv2d 1->16 ch, kernel=3, pad=1 + ReLU  (output: 16x28x28)
--> MaxPool2d 2x2                             (output: 16x14x14)
--> Conv2d 16->32 ch, kernel=3, pad=1 + ReLU (output: 32x14x14)
--> MaxPool2d 2x2                             (output: 32x7x7)
--> Flatten (32x7x7 = 1568)
--> Dense 128 + ReLU
--> Dropout 0.3
--> Dense 10 -> Softmax
+  --> Conv2d 1 to 16 ch, kernel=3, pad=1 + ReLU   (output: 16x28x28)
+  --> MaxPool2d 2x2                                (output: 16x14x14)
+  --> Conv2d 16 to 32 ch, kernel=3, pad=1 + ReLU  (output: 32x14x14)
+  --> MaxPool2d 2x2                                (output: 32x7x7)
+  --> Flatten (32x7x7 = 1568)
+  --> Dense 128 + ReLU
+  --> Dropout 0.3
+  --> Dense 10 --> Softmax
 
 Parameters: around 207K
 ```
