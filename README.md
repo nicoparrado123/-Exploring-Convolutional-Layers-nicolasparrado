@@ -27,12 +27,15 @@ to train on a laptop in a few minutes.
 
 ### Baseline: Flatten + Dense
 
+```
 Input 28x28 -> Flatten (784) -> Dense 256 + ReLU -> Dense 128 + ReLU -> Dense 10 -> Softmax
 
 Parameters: around 235K
+```
 
 ### CNN (designed from scratch)
 
+```
 Input 1x28x28
 -> Conv2d 1->16 ch, kernel=3, pad=1 + ReLU  (output: 16x28x28)
 -> MaxPool2d 2x2                             (output: 16x14x14)
@@ -44,6 +47,7 @@ Input 1x28x28
 -> Dense 10 -> Softmax
 
 Parameters: around 207K
+```
 
 Design decisions:
 - kernel=3, padding=1: 3x3 is the smallest kernel that captures structure in all directions. Padding keeps the spatial size before pooling so we don't lose info at the edges too early.
